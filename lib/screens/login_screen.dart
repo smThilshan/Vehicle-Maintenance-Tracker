@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_maintenance_tracker/widgets/my_textbox.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,7 +16,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //  appBar: AppBar(title: Center(child: Text(' SFA and RD'))),
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
+              const Expanded(
                 flex: 5,
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 40, horizontal: 40),
@@ -46,10 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "IMARA",
+                        "Vehilce Maintenance Tracker",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 44,
+                            fontSize: 32,
                             fontWeight: FontWeight.w600),
                       )
                     ],
@@ -60,13 +60,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 flex: 4,
                 child: Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40),
-                      // bottomLeft: Radius.circular(40),
-                      // bottomRight: Radius.circular(40),
                     ),
                   ),
                   child: Column(
@@ -74,35 +72,49 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        padding: EdgeInsets.fromLTRB(40, 0, 40, 10),
+                        padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
                         child: Form(
                           key: __loginFormKey,
                           child: Column(
                             children: [
-                              // MyTextBox(
-                              //     controller: email,
-                              //     labelText: Translate.getT("EMAIL"),
-                              //     isPassword: false,
-                              //     iconName: 'email'),
-                              // MyTextBox(
-                              //     controller: password,
-                              //     labelText: Translate.getT("PASSWORD"),
-                              //     isPassword: true,
-                              //     iconName: 'password'),
-                              Text("Email adi"),
-                              Text("Password adi"),
-                              SizedBox(
+                              MyTextBox(controller: email, text: "Email"),
+                              const SizedBox(height: 10),
+                              MyTextBox(
+                                  controller: password,
+                                  text: "Password",
+                                  isPassword: true),
+                              const SizedBox(
                                 height: 20,
                               ),
                               SizedBox(
                                 width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: Colors.blue.shade400,
+                                    padding: EdgeInsets.all(13),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'Login',
+                                    style: TextStyle(
+                                      fontFamily: 'OpenSans',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+
                                 // child: ElevatedButton(
                                 //   bColor: Theme.of(context).primaryColor,
                                 //   buttonText: "LOGIN",
                                 //   onclick: () {},
                                 //   mfontSize: 15,
                                 // ),
-                                child: Text("Login panra"),
+                                // child: Text("Login panra"),
                               ),
                             ],
                           ),
