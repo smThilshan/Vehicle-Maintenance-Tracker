@@ -5,7 +5,8 @@ class MyDatePicker extends StatefulWidget {
   final TextEditingController controller;
   final String labelText;
 
-  const MyDatePicker({required this.controller, required this.labelText, Key? key})
+  const MyDatePicker(
+      {required this.controller, required this.labelText, Key? key})
       : super(key: key);
 
   @override

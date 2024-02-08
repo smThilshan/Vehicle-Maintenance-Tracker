@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vehicle_maintenance_tracker/widgets/customized_textbox.dart';
-import 'package:vehicle_maintenance_tracker/widgets/my_date_picker.dart';
 import 'package:vehicle_maintenance_tracker/widgets/my_textbox.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -43,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               text: "Email",
             ),
             MyTextBox(
-              controller: _lastName,
+              controller: _username,
               text: "Username",
             ),
             MyTextBox(
@@ -73,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               text: "Gender",
             ),
 
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 // Add sign-up logic here

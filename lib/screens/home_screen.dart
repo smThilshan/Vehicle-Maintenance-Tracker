@@ -1,7 +1,10 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_controller.dart';
+import 'package:vehicle_maintenance_tracker/widgets/bottom_appbar_widget.dart';
+import 'package:vehicle_maintenance_tracker/widgets/custom_card_widget.dart';
+import 'package:vehicle_maintenance_tracker/widgets/drawer_widget.dart';
+
+import '../models/vehicle_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,63 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final CarouselController _carouselController = CarouselController();
   int _currentSlide = 0;
 
-  final List<String> imgList = [
-    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-    'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-    'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-    'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-    'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-  ];
-
-  late List<Widget> imageSliders;
-
-  @override
-  void initState() {
-    super.initState();
-    imageSliders = imgList
-        .map((item) => Container(
-              child: Container(
-                margin: EdgeInsets.all(5.0),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    child: Stack(
-                      children: <Widget>[
-                        Image.network(item, fit: BoxFit.cover, width: 1000.0),
-                        Positioned(
-                          bottom: 0.0,
-                          left: 0.0,
-                          right: 0.0,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromARGB(200, 0, 0, 0),
-                                  Color.fromARGB(0, 0, 0, 0)
-                                ],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                              ),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 20.0),
-                            child: Text(
-                              'No. ${imgList.indexOf(item)} image',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-            ))
-        .toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,41 +26,11 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Add drawer item 1 action here
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Add drawer item 2 action here
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const DrawerWidget(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -123,154 +39,119 @@ class _HomeScreenState extends State<HomeScreen> {
         shape: const CircleBorder(),
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: const BottomAppBar(
-        notchMargin: 6,
-        shape: CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.max,
+      bottomNavigationBar: const BottomAppbarWidget(),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.home,
-                    size: 30,
-                  ),
-                  Text("Home")
-                ],
+            const SizedBox(height: 12),
+            CarouselSlider(
+              options: CarouselOptions(
+                enlargeCenterPage: true,
+                enableInfiniteScroll: false,
+                initialPage: 2,
+                autoPlay: true,
+                viewportFraction: 1,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentSlide = index;
+                  });
+                },
               ),
+              carouselController: _carouselController,
+              items: Vehicle.vehicles
+                  .map((vehicle) => HeroCarouselWidget(vehicle: vehicle))
+                  .toList(),
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.money_rounded,
-                    size: 30,
+            const SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: Vehicle.vehicles.asMap().entries.map((entry) {
+                return GestureDetector(
+                  onTap: () => _carouselController.animateToPage(entry.key),
+                  child: Container(
+                    width: 8.0,
+                    height: 8.0,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _currentSlide == entry.key
+                          ? Colors.blueAccent
+                          : Colors.grey,
+                    ),
                   ),
-                  Text("Expense")
-                ],
-              ),
+                );
+              }).toList(),
             ),
-            SizedBox(
-              width: 10,
+            const CustomCardWidget(
+              icon: Icons.work,
+              heading: 'UPCOMING APPOINTMENTS',
+              description: 'you have appointment on coming week',
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 12),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.car_rental,
-                    size: 30,
-                  ),
-                  Text("Vehicle")
-                ],
-              ),
+            const CustomCardWidget(
+              icon: Icons.schedule,
+              heading: 'SCHEDULED APPOINTMENTS',
+              description: 'you have appointment on 21st February',
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.settings,
-                    size: 30,
-                  ),
-                  Text("Settings")
-                ],
-              ),
+            const CustomCardWidget(
+              icon: Icons.local_activity,
+              heading: 'RECENT ACTIVITIES',
+              description: 'changed the brake pads',
+            ),
+            const CustomCardWidget(
+              icon: Icons.car_crash,
+              heading: 'SHOPS NEAR ME',
+              description: 'find auto mobile shops near me',
             ),
           ],
         ),
       ),
+    );
+  }
+}
 
-      // body: SingleChildScrollView(
-      //     child: Padding(
-      //   padding: EdgeInsets.all(10),
-      //   child: Column(
-      //     children: [
-      //       BottomAppBar(
-      //         shape: const CircularNotchedRectangle(),
-      //         child: Container(
-      //           padding: const EdgeInsets.fromLTRB(0, 5, 0, 8),
-      //           child: Row(
-      //             mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //             children: [
-      //               Container(
-      //                 padding: const EdgeInsets.only(top: 5),
-      //                 width: 60,
-      //                 child: Column(
-      //                   mainAxisSize: MainAxisSize.min,
-      //                   children: [
-      //                     SizedBox(
-      //                       // width: 30,
-      //                       child: Image.asset(
-      //                         'assets/images/red-cheque.png',
-      //                         fit: BoxFit.contain,
-      //                       ),
-      //                     ),
-      //                     Text(
-      //                       "title",
-      //                       style: const TextStyle(
-      //                           fontSize: 10, color: Colors.black45),
-      //                     ),
-      //                   ],
-      //                 ),
-      //               ),
-      //               SizedBox(
-      //                 width: 50,
-      //                 child: Text(''),
-      //               ),
-      //             ],
-      //           ),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // )),
+class HeroCarouselWidget extends StatelessWidget {
+  final Vehicle vehicle;
+  const HeroCarouselWidget({super.key, required this.vehicle});
 
-      body: Column(
-        children: [
-          SizedBox(height: 12),
-          CarouselSlider(
-            options: CarouselOptions(
-              enlargeCenterPage: true,
-              enableInfiniteScroll: false,
-              initialPage: 2,
-              autoPlay: true,
-              viewportFraction: 1,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _currentSlide = index;
-                });
-              },
-            ),
-            carouselController: _carouselController,
-            items: imageSliders,
-          ),
-          SizedBox(height: 5),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: imgList.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () => _carouselController.animateToPage(entry.key),
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(5.0),
+      child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          child: Stack(
+            children: <Widget>[
+              Image.network(vehicle.imgUrl, fit: BoxFit.cover, width: 1000.0),
+              Positioned(
+                bottom: 0.0,
+                left: 0.0,
+                right: 0.0,
                 child: Container(
-                  width: 8.0,
-                  height: 8.0,
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: _currentSlide == entry.key
-                        ? Colors.blueAccent
-                        : Colors.grey,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(200, 0, 0, 0),
+                        Color.fromARGB(0, 0, 0, 0)
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  child: Text(
+                    vehicle.name,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              );
-            }).toList(),
-          ),
-        ],
-      ),
+              ),
+            ],
+          )),
     );
   }
 }
