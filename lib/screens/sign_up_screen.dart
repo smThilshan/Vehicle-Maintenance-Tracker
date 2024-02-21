@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vehicle_maintenance_tracker/widgets/my_textbox.dart';
 
 class SignUpScreen extends StatefulWidget {
+  static const routeName = 'signup_screen';
+
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }

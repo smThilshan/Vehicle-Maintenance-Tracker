@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:vehicle_maintenance_tracker/widgets/bottom_appbar_widget.dart';
 import 'package:vehicle_maintenance_tracker/widgets/custom_card_widget.dart';
 import 'package:vehicle_maintenance_tracker/widgets/drawer_widget.dart';
+import 'package:vehicle_maintenance_tracker/widgets/vehicle_card_widget.dart';
 
 import '../models/vehicle_model.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = 'home_screen';
+
   const HomeScreen({super.key});
 
   @override
@@ -117,12 +120,13 @@ class HeroCarouselWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5.0),
+      margin: const EdgeInsets.all(5.0),
       child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
           child: Stack(
             children: <Widget>[
-              Image.network(vehicle.imgUrl, fit: BoxFit.cover, width: 1000.0),
+              // Image.network(vehicle.imgUrl, fit: BoxFit.cover, width: 1000.0),
+              Image.asset(vehicle.imgUrl, fit: BoxFit.cover, width: 1000.0),
               Positioned(
                 bottom: 0.0,
                 left: 0.0,

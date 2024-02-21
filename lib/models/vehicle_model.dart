@@ -15,18 +15,15 @@ class Vehicle extends Equatable {
   static List<Vehicle> vehicles = [
     const Vehicle(
       name: "Toyota Prius",
-      imgUrl:
-          "https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80",
+      imgUrl: "assets/images/car1.jpg",
     ),
     const Vehicle(
       name: "Nissan March",
-      imgUrl:
-          "https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80",
+      imgUrl: "assets/images/car2.jpg",
     ),
     const Vehicle(
       name: "Suzuki Alto",
-      imgUrl:
-          "https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80",
+      imgUrl: "assets/images/car1.jpg",
     ),
   ];
 }

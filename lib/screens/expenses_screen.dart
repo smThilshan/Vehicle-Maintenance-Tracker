@@ -1,0 +1,12 @@
+import 'package:flutter/material.dart';
+
+class ExpensesScreen extends StatelessWidget {
+  static const routeName = 'expenses_screen';
+
+  const ExpensesScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}

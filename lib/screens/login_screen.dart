@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vehicle_maintenance_tracker/widgets/my_textbox.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = 'login_screen';
+
   const LoginScreen({super.key});
 
   @override
@@ -93,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   style: ElevatedButton.styleFrom(
                                     foregroundColor: Colors.white,
                                     backgroundColor: Colors.blue.shade400,
-                                    padding: EdgeInsets.all(13),
+                                    padding: const EdgeInsets.all(13),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25),
                                     ),

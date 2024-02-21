@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_maintenance_tracker/screens/vehicle_screen.dart';
 
 class BottomAppbarWidget extends StatefulWidget {
   const BottomAppbarWidget({super.key});
@@ -10,14 +11,14 @@ class BottomAppbarWidget extends StatefulWidget {
 class _BottomAppbarWidgetState extends State<BottomAppbarWidget> {
   @override
   Widget build(BuildContext context) {
-    return const BottomAppBar(
+    return BottomAppBar(
       notchMargin: 6,
-      shape: CircularNotchedRectangle(),
+      shape: const CircularNotchedRectangle(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 10),
             child: Column(
               children: [
@@ -30,6 +31,27 @@ class _BottomAppbarWidgetState extends State<BottomAppbarWidget> {
             ),
           ),
           Padding(
+            padding: const EdgeInsets.only(left: 12),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, VehicleScreen.routeName);
+                // Navigator.pushNamed(context, VehicleScreen.routeName);
+              },
+              child: const Column(
+                children: [
+                  Icon(
+                    Icons.car_rental,
+                    size: 30,
+                  ),
+                  Text("Vehicle")
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          const Padding(
             padding: EdgeInsets.only(left: 10),
             child: Column(
               children: [
@@ -41,22 +63,7 @@ class _BottomAppbarWidgetState extends State<BottomAppbarWidget> {
               ],
             ),
           ),
-          SizedBox(
-            width: 10,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 12),
-            child: Column(
-              children: [
-                Icon(
-                  Icons.car_rental,
-                  size: 30,
-                ),
-                Text("Vehicle")
-              ],
-            ),
-          ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 10),
             child: Column(
               children: [
