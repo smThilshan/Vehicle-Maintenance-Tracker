@@ -34,7 +34,7 @@
 //             padding: const EdgeInsets.only(left: 12),
 //             child: GestureDetector(
 //               onTap: () {
-//                 Navigator.pushNamed(context, VehicleScreen.routeName);
+//                 .pushNamed(context, VehicleScreen.routeName);
 //                 // Navigator.pushNamed(context, VehicleScreen.routeName);
 //               },
 //               child: const Column(
@@ -117,7 +117,8 @@ class _BottomAppbarWidgetState extends State<BottomAppbarWidget> {
     return BottomNavigationBar(
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
-      items: [
+      type: BottomNavigationBarType.fixed,
+      items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',

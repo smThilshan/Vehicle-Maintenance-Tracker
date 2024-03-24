@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_maintenance_tracker/screens/home_screen.dart';
+import 'package:vehicle_maintenance_tracker/screens/sign_up_screen.dart';
 import 'package:vehicle_maintenance_tracker/widgets/my_textbox.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -91,7 +93,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               SizedBox(
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    // Navigator.pushNamed(context, '/signup');
+                                    Navigator.pushNamed(
+                                        context, HomeScreen.routeName);
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     foregroundColor: Colors.white,
                                     backgroundColor: Colors.blue.shade400,
@@ -117,6 +123,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                 //   mfontSize: 15,
                                 // ),
                                 // child: Text("Login panra"),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Center(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, SignUpScreen.routeName);
+                                  },
+                                  child: Text(
+                                    "I don't have an account",
+                                    style: TextStyle(
+                                      color: Colors
+                                          .blue, // or any other color you prefer
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),

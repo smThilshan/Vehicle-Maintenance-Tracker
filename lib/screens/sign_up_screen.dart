@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_maintenance_tracker/screens/home_screen.dart';
 import 'package:vehicle_maintenance_tracker/widgets/my_textbox.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -76,7 +77,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                // Add sign-up logic here
+                // Add sign-up logic here\
+                Navigator.pushNamed(context, HomeScreen.routeName);
               },
               child: Text('Sign Up'),
             ),
