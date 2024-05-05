@@ -35,6 +35,7 @@ class VehicleScreen extends StatelessWidget {
                 return VehicleCard(
                   topRightIcon: Icons.warning_amber_rounded,
                   VehicleNo: vehicle.vehicleNo,
+                  imageFile: vehicle.imageFile,
                 );
               },
             ),

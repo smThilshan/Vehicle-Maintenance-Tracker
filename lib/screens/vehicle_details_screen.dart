@@ -24,7 +24,7 @@ class VehicleDetailsScreen extends StatelessWidget {
     if (selectedVehicle != null) {
       // Vehicle details found, use selectedVehicle here
       // For example:
-      print('Selected Vehicle: ${selectedVehicle.name}');
+      print('Selected Vehicle: ${selectedVehicle.vehicleModel}');
     } else {
       // Vehicle details not found, handle the case here
       // For example:
@@ -40,68 +40,74 @@ class VehicleDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 350,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                image: DecorationImage(
-                  image: AssetImage('assets/images/car1.jpg'),
-                  fit: BoxFit.cover,
+            if (selectedVehicle != null && selectedVehicle.imageFile != null)
+              Container(
+                width: 350,
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  image: DecorationImage(
+                    image: FileImage(selectedVehicle.imageFile!),
+                    fit: BoxFit.cover,
+                  ),
                 ),
+              ),
+            SizedBox(height: 13.0),
+            Center(
+              child: Text(
+                '${selectedVehicle?.vehicleModel} ${selectedVehicle?.yearofRegister} ',
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(height: 10.0),
+            //  SizedBox(height: 10.0),
             Text(
               'Vehicle No: ${selectedVehicle?.vehicleNo}',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 13.0),
-            Center(
-              child: Text(
-                'Suzuki Celerio 2018',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(height: 5.0),
-            SizedBox(height: 20.0),
             Text(
-              'Vehicle Type: Bus',
+              'Vehicle Type: ${selectedVehicle?.vehicleType}',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 13.0),
             Text(
-              'Year of Manufacture : 2013',
+              'Year of Manufacture : ${selectedVehicle?.yearofManufacturer}',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 13.0),
             Text(
-              'Year of Register : 2013  ',
+              'Year of Register : ${selectedVehicle?.yearofRegister}  ',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 13.0),
             Text(
-              'Fuel Type : Diesel',
+              'Fuel Type : ${selectedVehicle?.fuelType}',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 13.0),
             Text(
-              'Oil Changing Period: 12000 km',
+              'Oil Changing Period: ${selectedVehicle?.oilChangingPeriod}',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 13.0),
             Text(
-              'Last Serviced Date : 02.02.2024',
+              'Last Oil Changed Date : ${selectedVehicle?.lastOilChangedDate}',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 13.0),
             Text(
-              'Insurance Period:  02.02.2024 - 01.02.2025',
+              'Last Serviced Date : ${selectedVehicle?.lastServicedDate}',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 13.0),
             Text(
-              'Tax Period:  13.02.2024 - 12.02.2025',
+              'Insurance Period: ${selectedVehicle?.insurancePeriod}',
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(height: 13.0),
+            Text(
+              'Tax Period: ${selectedVehicle?.taxPeriod}',
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
             ),
             SizedBox(

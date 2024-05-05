@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class VehicleMaintenanceLogScreen extends StatefulWidget {
-  static const routeName = 'log_screen';
+  static const routeName = 'vehicle_maintenance_log_screen';
 
   @override
   _VehicleMaintenanceLogScreenState createState() =>
@@ -32,31 +30,16 @@ class _VehicleMaintenanceLogScreenState
               PieChartData(
                 sections: [
                   PieChartSectionData(
-                    titleStyle: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
                     value: 30,
                     color: Colors.green,
-                    // title: 'Up to Date',
                   ),
                   PieChartSectionData(
-                    titleStyle: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
                     value: 40,
                     color: Colors.blue,
-                    // title: 'Due This Month',
                   ),
                   PieChartSectionData(
-                    titleStyle: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
                     value: 30,
                     color: Colors.red,
-                    // title: 'Overdue',
                   ),
                 ],
               ),
@@ -67,9 +50,6 @@ class _VehicleMaintenanceLogScreenState
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              // buildTapIcon(0, Icons.view_list , txt: ""),
-              // buildTapIcon(1, Icons.calendar_today),
-              // buildTapIcon(2, Icons.history),
               buildTapIcon(
                   0, Icons.circle, "Up to date", Colors.green.shade400),
               buildTapIcon(1, Icons.circle, "Due this month", Colors.blue),
@@ -78,9 +58,9 @@ class _VehicleMaintenanceLogScreenState
           ),
           SizedBox(height: 20),
           // Details based on the selected view
-          _selectedViewIndex == 0 ? BasicViewDetails() : BasicViewDetails(),
-          _selectedViewIndex == 1 ? BasicViewDetails() : DetailedViewDetails(),
-          _selectedViewIndex == 2 ? BasicViewDetails() : OverDueDetails(),
+          _selectedViewIndex == 0 ? BasicViewDetails() : SizedBox(),
+          _selectedViewIndex == 1 ? DetailedViewDetails() : SizedBox(),
+          _selectedViewIndex == 2 ? OverDueDetails() : SizedBox(),
         ],
       ),
     );
@@ -97,7 +77,6 @@ class _VehicleMaintenanceLogScreenState
         children: [
           Icon(
             icon,
-            // color: _selectedViewIndex == index ? Colors.blue : Colors.grey,
             color: color,
             size: 30,
           ),
@@ -113,6 +92,7 @@ class BasicViewDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
+      color: Colors.green.shade100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -136,6 +116,7 @@ class DetailedViewDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
+      color: Colors.blue.shade100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -157,11 +138,12 @@ class OverDueDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
+      color: Colors.red.shade100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Over due Details',
+            'Overdue Details',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_maintenance_tracker/screens/setting_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  const DrawerWidget({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,28 +10,48 @@ class DrawerWidget extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          const DrawerHeader(
+          UserAccountsDrawerHeader(
+            accountName: Text(
+              'John Doe',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            accountEmail: Text(
+              'john.doe@example.com',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+            currentAccountPicture: CircleAvatar(
+              child: Icon(
+                Icons.person,
+                size: 40,
+              ),
+            ),
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text(
-              'Drawer Header',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
           ),
           ListTile(
-            title: Text('Item 1'),
+            leading: Icon(Icons.home),
+            title: Text('Home'),
             onTap: () {
-              // Add drawer item 1 action here
+              // Add home item action here
             },
           ),
           ListTile(
-            title: Text('Item 2'),
+            leading: Icon(Icons.settings),
+            title: Text('Settings'),
             onTap: () {
-              // Add drawer item 2 action here
+              Navigator.pushNamed(context, SettingsScreen.routeName);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Logout'),
+            onTap: () {
+              // Add logout item action here
             },
           ),
         ],
