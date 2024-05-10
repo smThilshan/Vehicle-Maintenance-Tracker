@@ -1,3 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
+
+import 'firebase_options.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_maintenance_tracker/providers/expense_provider.dart';
@@ -9,10 +13,10 @@ import 'package:vehicle_maintenance_tracker/screens/add_reminder_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/add_vehicle_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/expenses_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/home_screen.dart';
+import 'package:vehicle_maintenance_tracker/screens/live_location_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/login_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/notification_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/parts_screen.dart';
-import 'package:vehicle_maintenance_tracker/screens/realtime_vehicle_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/recent_activities_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/reminder_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/scheduled_appointments_screen.dart';
@@ -26,7 +30,9 @@ import 'package:vehicle_maintenance_tracker/screens/vehicle_details_screen.dart'
 import 'package:vehicle_maintenance_tracker/screens/vehicle_maintenance_log_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/vehicle_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -57,7 +63,6 @@ class MyApp extends StatelessWidget {
           ExpensesScreen.routeName: (context) => ExpensesScreen(),
           NotificationScreen.routeName: (context) => NotificationScreen(),
           PartsScreen.routeName: (context) => PartsScreen(),
-          LiveLocationScreen.routeName: (context) => LiveLocationScreen(),
           ReminderScreen.routeName: (context) => ReminderScreen(),
           SettingsScreen.routeName: (context) => SettingsScreen(),
           UpdateVehicleSrceen.routeName: (context) => UpdateVehicleSrceen(),

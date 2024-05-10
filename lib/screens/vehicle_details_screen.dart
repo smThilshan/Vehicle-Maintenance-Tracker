@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_maintenance_tracker/screens/live_location_screen.dart';
 import 'package:vehicle_maintenance_tracker/widgets/tile_custom_card_widget.dart';
 
 import '../models/vehicle_model.dart';
@@ -115,6 +116,9 @@ class VehicleDetailsScreen extends StatelessWidget {
             ),
             TileCustomCardWidget(
               textline: "Live Location",
+              onTap: () {
+                Navigator.pushNamed(context, LiveLocationScreen.routeName);
+              },
             ),
             SizedBox(
               height: 10,

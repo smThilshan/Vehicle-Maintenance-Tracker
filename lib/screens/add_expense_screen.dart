@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 import 'package:vehicle_maintenance_tracker/models/expense_model.dart';
+import 'package:vehicle_maintenance_tracker/services/database.dart';
 
 class AddExpenseScreen extends StatefulWidget {
   static const routeName = 'add_expense_screen';
@@ -9,6 +11,9 @@ class AddExpenseScreen extends StatefulWidget {
 }
 
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
+  TextEditingController namecontroller = new TextEditingController();
+  TextEditingController amountcontroller = new TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   late String _expenseName;
   late double _expenseAmount;
@@ -60,6 +65,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFormField(
+                controller: namecontroller,
                 decoration: InputDecoration(labelText: 'Expense Name'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -72,6 +78,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 },
               ),
               TextFormField(
+                controller: amountcontroller,
                 decoration: InputDecoration(labelText: 'Amount'),
                 keyboardType: TextInputType.number,
                 validator: (value) {
@@ -130,7 +137,15 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  String Id = randomAlpha(10);
+                  Map<String, String> expenseInfoMap = {
+                    "Name": namecontroller.text,
+                    "Amount": amountcontroller.text,
+                    "Id": Id,
+                  };
+                  await DatabaseMethods().addExpenseDetails(expenseInfoMap, Id);
+
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
 

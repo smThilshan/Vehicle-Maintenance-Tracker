@@ -17,6 +17,7 @@ class _LiveLocationScreenState extends State<LiveLocationScreen> {
   @override
   void initState() {
     super.initState();
+    _currentLocation = LatLng(0.0, 0.0); // Provide a default initial value
     _getLocation();
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_maintenance_tracker/screens/live_location_screen.dart';
 import 'package:vehicle_maintenance_tracker/screens/setting_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -37,7 +38,7 @@ class DrawerWidget extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text('Home'),
             onTap: () {
-              // Add home item action here
+              Navigator.pushNamed(context, LiveLocationScreen.routeName);
             },
           ),
           ListTile(

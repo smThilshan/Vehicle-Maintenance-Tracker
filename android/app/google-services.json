@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "806586564832",
+    "project_id": "vehiclemaintenancetrackerapp",
+    "storage_bucket": "vehiclemaintenancetrackerapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806586564832:android:7f52f86b70fc0a0cb65085",
+        "android_client_info": {
+          "package_name": "com.example.vehicle_maintenance_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_h0r0bTfaUDt2HsQmsFByIUnOg1OCOEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
