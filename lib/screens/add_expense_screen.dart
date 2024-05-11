@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:random_string/random_string.dart';
 import 'package:vehicle_maintenance_tracker/models/expense_model.dart';
 import 'package:vehicle_maintenance_tracker/services/database.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 
 class AddExpenseScreen extends StatefulWidget {
   static const routeName = 'add_expense_screen';
@@ -139,30 +141,48 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               ElevatedButton(
                 onPressed: () async {
                   String Id = randomAlpha(10);
-                  Map<String, String> expenseInfoMap = {
+                  Map<String, dynamic> expenseInfoMap = {
                     "Name": namecontroller.text,
                     "Amount": amountcontroller.text,
                     "Id": Id,
                   };
-                  await DatabaseMethods().addExpenseDetails(expenseInfoMap, Id);
+                  // try {
+                  //   await DatabaseMethods()
+                  //       .addExpenseDetails(expenseInfoMap, Id);
+                  //   Fluttertoast.showToast(
+                  //       msg: "Expense added successfully",
+                  //       toastLength: Toast.LENGTH_SHORT,
+                  //       gravity: ToastGravity.CENTER,
+                  //       timeInSecForIosWeb: 1,
+                  //       backgroundColor: Colors.red,
+                  //       textColor: Colors.white,
+                  //       fontSize: 16.0);
+                  // } catch (e) {
+                  //   print("Error adding expense: $e");
+                  //   Fluttertoast.showToast(
+                  //       msg: "Failed to add expense. Please try again.",
+                  //       toastLength: Toast.LENGTH_SHORT,
+                  //       gravity: ToastGravity.CENTER,
+                  //       timeInSecForIosWeb: 1,
+                  //       backgroundColor: Colors.red,
+                  //       textColor: Colors.white,
+                  //       fontSize: 16.0);
+                  // }
 
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
+                  // *** These are for provider //***
 
-                    final newExpense = Expense(
-                      name: _expenseName,
-                      amount: _expenseAmount,
-                      date: _selectedDateTime,
-                    );
+                  // if (_formKey.currentState!.validate()) {
+                  //   _formKey.currentState!.save();
 
-                    Expense.expenses.add(newExpense);
+                  //   final newExpense = Expense(
+                  //     name: _expenseName,
+                  //     amount: _expenseAmount,
+                  //     date: _selectedDateTime,
+                  //   );
 
-                    // Save expense to database or storage
-                    // saveExpense();
-
-                    // Navigate back to previous screen
-                    Navigator.pop(context);
-                  }
+                  //   Expense.expenses.add(newExpense);
+                  Navigator.pop(context);
+                  // }
                 },
                 child: Text('Add Expense'),
               ),

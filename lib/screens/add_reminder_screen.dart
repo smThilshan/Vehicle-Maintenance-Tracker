@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:random_string/random_string.dart';
 import 'package:vehicle_maintenance_tracker/models/reminder_model.dart';
+import 'package:vehicle_maintenance_tracker/services/database.dart';
 
 import '../providers/reminder_provider.dart';
 
@@ -96,16 +98,16 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                       Text(
                         DateFormat('MMM d, y - HH:mm')
                             .format(_selectedDateTime),
-                        style: TextStyle(fontSize: 16.0),
+                        style: const TextStyle(fontSize: 16.0),
                       ),
-                      Icon(Icons.calendar_today),
+                      const Icon(Icons.calendar_today),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     final newReminder = Reminder(
@@ -116,8 +118,14 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
 
                     // Reminder.reminders.add(newReminder);
                     // Save the new reminder to your storage solution
-                    Provider.of<ReminderProvider>(context, listen: false)
-                        .addReminder(newReminder);
+                    // Provider.of<ReminderProvider>(context, listen: false)
+                    //     .addReminder(newReminder);
+                    // Navigator.pop(context);
+
+                    // Call a method to save the reminder to Firestore
+                    String reminderId = randomAlpha(10);
+                    await DatabaseMethods()
+                        .addReminderDetails(newReminder.toMap(), reminderId);
                     Navigator.pop(context);
                   }
                 },

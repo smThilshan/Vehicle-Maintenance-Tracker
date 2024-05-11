@@ -60,9 +60,6 @@ class Vehicle extends Equatable {
 
   static List<Vehicle> vehicles = [
     const Vehicle(
-      // name: "Toyota Prius",
-      // imgUrl: "assets/images/car1.jpg",
-      // vehicleNo: "NA 2582",
       vehicleNo: "NB 2231",
       vehicleModel: "Lanka Ashok Leyland",
       vehicleType: "Bus",
@@ -79,4 +76,22 @@ class Vehicle extends Equatable {
       imageFile: null,
     ),
   ];
+
+  Map<String, dynamic> toMap() {
+    return {
+      'vehicleNo': vehicleNo,
+      'vehicleModel': vehicleModel,
+      'vehicleType': vehicleType,
+      'yearofManufacturer': yearofManufacturer,
+      'yearofRegister': yearofRegister,
+      'fuelType': fuelType,
+      'oilChangingPeriod': oilChangingPeriod,
+      'lastOilChangedDate': lastOilChangedDate,
+      'lastServicedDate': lastServicedDate,
+      'insurancePeriod': insurancePeriod,
+      'taxPeriod': taxPeriod,
+      'currentMeterReading': currentMeterReading,
+      // Add other fields as needed
+    };
+  }
 }

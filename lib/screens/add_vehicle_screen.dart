@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vehicle_maintenance_tracker/models/vehicle_model.dart';
+import 'package:vehicle_maintenance_tracker/services/database.dart';
 
 class AddVehicleScreen extends StatefulWidget {
   static const routeName = 'add_vehicle_screen';
@@ -241,6 +242,7 @@ class _AddVehicleScreenState extends State<AddVehicleScreen> {
                         await picker.pickImage(source: ImageSource.gallery);
 
                     if (pickedFile != null) {
+                      print("Image file path: ${pickedFile.path}");
                       setState(() {
                         _imageFile =
                             File(pickedFile.path); // Save the image file
@@ -270,7 +272,7 @@ class _AddVehicleScreenState extends State<AddVehicleScreen> {
                 // Add TextFormField for other vehicle details here
                 const SizedBox(height: 16),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
                       // Create a new vehicle object and add it to the list
@@ -293,7 +295,11 @@ class _AddVehicleScreenState extends State<AddVehicleScreen> {
                         // Assign other vehicle details here
                       );
                       // Add logic to add the new vehicle to the list or database
-                      Vehicle.vehicles.add(newVehicle);
+                      // Vehicle.vehicles.add(newVehicle);
+
+                      // This is for firebase
+                      await DatabaseMethods()
+                          .addVehicleDetails(newVehicle.toMap(), _imageFile);
                       // Navigate back to the previous screen
                       Navigator.pop(context);
                     }
