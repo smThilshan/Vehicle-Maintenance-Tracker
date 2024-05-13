@@ -1,3 +1,49 @@
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'package:vehicle_maintenance_tracker/models/vehicle_model.dart';
+// import 'package:vehicle_maintenance_tracker/services/database.dart'; // Import the database.dart file
+
+// class VehicleScreen extends StatelessWidget {
+//   static const routeName = 'vehicle_screen';
+
+//   const VehicleScreen({Key? key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Vehicle Details'),
+//       ),
+//       body: FutureBuilder<List<Vehicle>>(
+//         future: DatabaseMethods()
+//             .getAllVehicles(), // Call the method from the database.dart file
+//         builder: (context, snapshot) {
+//           if (snapshot.connectionState == ConnectionState.waiting) {
+//             return Center(child: CircularProgressIndicator());
+//           } else if (snapshot.hasError) {
+//             return Center(child: Text('Error: ${snapshot.error}'));
+//           } else {
+//             final List<Vehicle> vehicles = snapshot.data ?? [];
+//             return ListView.builder(
+//               itemCount: vehicles.length,
+//               itemBuilder: (context, index) {
+//                 final vehicle = vehicles[index];
+//                 Text(vehicle.vehicleNo);
+//                 // Now you can display the vehicle details or use them as needed
+//                 return ListTile(
+//                   title: Text(vehicle.vehicleNo),
+//                   subtitle: Text(vehicle.vehicleModel),
+//                   // Add more details as needed
+//                 );
+//               },
+//             );
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vehicle_maintenance_tracker/models/vehicle_model.dart'; // Import your Vehicle model
@@ -34,7 +80,7 @@ class VehicleScreen extends StatelessWidget {
                 final vehicle = vehicles[index];
                 return VehicleCard(
                   topRightIcon: Icons.warning_amber_rounded,
-                  VehicleNo: vehicle.vehicleNo,
+                  vehicleNo: vehicle.vehicleNo,
                   imageFile: vehicle.imageFile,
                 );
               },

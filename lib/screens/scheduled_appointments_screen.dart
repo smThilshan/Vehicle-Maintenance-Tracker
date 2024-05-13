@@ -11,12 +11,12 @@ class ScheduledAppointmentsScreen extends StatelessWidget {
     List<Appointment> scheduledAppointments = [
       Appointment(
         icon: Icons.event,
-        heading: 'Service Appointment',
+        title: 'Service Appointment',
         description: 'Scheduled for regular service checkup',
       ),
       Appointment(
         icon: Icons.medical_services,
-        heading: 'Medical Checkup',
+        title: 'Medical Checkup',
         description: 'Scheduled for medical examination',
       ),
     ];
@@ -31,11 +31,11 @@ class ScheduledAppointmentsScreen extends StatelessWidget {
           final appointment = scheduledAppointments[index];
           return CustomCardWidget(
             icon: appointment.icon,
-            heading: appointment.heading,
+            heading: appointment.title,
             description: appointment.description,
             onTap: () {
               // Handle tap event for scheduled appointment
-              print('Tapped on scheduled appointment: ${appointment.heading}');
+              print('Tapped on scheduled appointment: ${appointment.title}');
             },
           );
         },

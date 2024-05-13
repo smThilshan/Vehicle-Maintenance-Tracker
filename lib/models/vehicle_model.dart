@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 
 class Vehicle extends Equatable {
+  late String id;
   final String vehicleNo;
   final String vehicleModel;
   final String vehicleType;
@@ -15,15 +16,16 @@ class Vehicle extends Equatable {
   final String insurancePeriod;
   final String taxPeriod;
   final String currentMeterReading;
-  // final String imgUrl;
+  final String? imgUrl;
   final File? imageFile;
 
   // final String name;
   // final String vehicleNo;
 
-  const Vehicle({
+  Vehicle({
     // required this.name,
     // required this.imgUrl,
+    required this.id,
     required this.vehicleNo,
     required this.vehicleModel,
     required this.vehicleType,
@@ -36,12 +38,13 @@ class Vehicle extends Equatable {
     required this.insurancePeriod,
     required this.taxPeriod,
     required this.currentMeterReading,
-    // required this.imgUrl,
+    this.imgUrl,
     required this.imageFile,
   });
 
   @override
   List<Object?> get props => [
+        id,
         vehicleNo,
         vehicleModel,
         vehicleType,
@@ -59,7 +62,8 @@ class Vehicle extends Equatable {
       ];
 
   static List<Vehicle> vehicles = [
-    const Vehicle(
+    Vehicle(
+      id: '01',
       vehicleNo: "NB 2231",
       vehicleModel: "Lanka Ashok Leyland",
       vehicleType: "Bus",
@@ -79,6 +83,7 @@ class Vehicle extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'vehicleNo': vehicleNo,
       'vehicleModel': vehicleModel,
       'vehicleType': vehicleType,

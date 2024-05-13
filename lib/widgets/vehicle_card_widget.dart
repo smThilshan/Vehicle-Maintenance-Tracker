@@ -7,11 +7,11 @@ class VehicleCard extends StatelessWidget {
   // final String? imageUrl;
   final File? imageFile;
   final IconData topRightIcon;
-  final String VehicleNo;
+  final String vehicleNo;
 
   const VehicleCard({
     Key? key,
-    required this.VehicleNo,
+    required this.vehicleNo,
     required this.topRightIcon,
     this.imageFile,
   }) : super(key: key);
@@ -44,7 +44,7 @@ class VehicleCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Text(
-                      VehicleNo,
+                      vehicleNo,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -62,7 +62,7 @@ class VehicleCard extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pushNamed(
                         VehicleDetailsScreen.routeName,
-                        arguments: VehicleNo,
+                        arguments: vehicleNo,
                       );
                     },
                     style: ElevatedButton.styleFrom(

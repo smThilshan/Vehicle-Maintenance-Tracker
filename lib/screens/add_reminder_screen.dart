@@ -110,7 +110,9 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
+                    String Id;
                     final newReminder = Reminder(
+                      id: Id = randomAlpha(10),
                       title: _title,
                       description: _description,
                       dateTime: _selectedDateTime,
@@ -123,9 +125,9 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                     // Navigator.pop(context);
 
                     // Call a method to save the reminder to Firestore
-                    String reminderId = randomAlpha(10);
+                    // String reminderId = randomAlpha(10);
                     await DatabaseMethods()
-                        .addReminderDetails(newReminder.toMap(), reminderId);
+                        .addReminderDetails(newReminder.toMap(), Id);
                     Navigator.pop(context);
                   }
                 },

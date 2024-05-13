@@ -10,17 +10,17 @@ class RecentActivitiesScreen extends StatelessWidget {
     final List<Appointment> recentActivities = [
       Appointment(
         icon: Icons.notifications,
-        heading: 'Received Notification',
+        title: 'Received Notification',
         description: 'You have a new message.',
       ),
       Appointment(
         icon: Icons.event,
-        heading: 'Upcoming Event',
+        title: 'Upcoming Event',
         description: 'Join us for the annual conference.',
       ),
       Appointment(
         icon: Icons.email,
-        heading: 'Sent Email',
+        title: 'Sent Email',
         description: 'Follow up with the client.',
       ),
     ];
@@ -39,7 +39,7 @@ class RecentActivitiesScreen extends StatelessWidget {
             },
             child: CustomCardWidget(
               icon: activity.icon,
-              heading: activity.heading,
+              heading: activity.title,
               description: activity.description,
             ),
           );

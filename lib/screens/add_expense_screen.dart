@@ -147,8 +147,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     "Id": Id,
                   };
                   // try {
-                  //   await DatabaseMethods()
-                  //       .addExpenseDetails(expenseInfoMap, Id);
+                  await DatabaseMethods().addExpenseDetails(expenseInfoMap, Id);
                   //   Fluttertoast.showToast(
                   //       msg: "Expense added successfully",
                   //       toastLength: Toast.LENGTH_SHORT,

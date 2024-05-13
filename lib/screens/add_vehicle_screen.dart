@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:random_string/random_string.dart';
 import 'package:vehicle_maintenance_tracker/models/vehicle_model.dart';
 import 'package:vehicle_maintenance_tracker/services/database.dart';
 
@@ -276,7 +277,9 @@ class _AddVehicleScreenState extends State<AddVehicleScreen> {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
                       // Create a new vehicle object and add it to the list
+                      String Id;
                       final newVehicle = Vehicle(
+                        id: Id = randomAlpha(10),
                         vehicleNo: _vehicleNo,
                         vehicleModel: _vehicleModel,
                         vehicleType: _vehicleType,
@@ -295,7 +298,7 @@ class _AddVehicleScreenState extends State<AddVehicleScreen> {
                         // Assign other vehicle details here
                       );
                       // Add logic to add the new vehicle to the list or database
-                      // Vehicle.vehicles.add(newVehicle);
+                      Vehicle.vehicles.add(newVehicle);
 
                       // This is for firebase
                       await DatabaseMethods()
