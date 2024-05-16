@@ -98,7 +98,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                     _formKey.currentState!.save();
 
                     // Create a new appointment object
+                    String Id;
                     final newAppointment = Appointment(
+                      id: randomAlpha(10),
                       title: _title,
                       dateTime: _selectedDateTime,
                       description: _description,

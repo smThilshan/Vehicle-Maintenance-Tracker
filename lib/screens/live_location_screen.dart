@@ -5,7 +5,7 @@ import 'package:location/location.dart' as location;
 import 'package:url_launcher/url_launcher_string.dart';
 
 class LiveLocationScreen extends StatefulWidget {
-  static const routeName = 'add_vehicle_screen';
+  static const routeName = 'live_location_screen';
 
   @override
   _LiveLocationScreenState createState() => _LiveLocationScreenState();

@@ -8,21 +8,21 @@ class RecentActivitiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Dummy data for demonstration
     final List<Appointment> recentActivities = [
-      Appointment(
-        icon: Icons.notifications,
-        title: 'Received Notification',
-        description: 'You have a new message.',
-      ),
-      Appointment(
-        icon: Icons.event,
-        title: 'Upcoming Event',
-        description: 'Join us for the annual conference.',
-      ),
-      Appointment(
-        icon: Icons.email,
-        title: 'Sent Email',
-        description: 'Follow up with the client.',
-      ),
+      // Appointment(
+      //   icon: Icons.notifications,
+      //   title: 'Received Notification',
+      //   description: 'You have a new message.',
+      // ),
+      // Appointment(
+      //   icon: Icons.event,
+      //   title: 'Upcoming Event',
+      //   description: 'Join us for the annual conference.',
+      // ),
+      // Appointment(
+      //   icon: Icons.email,
+      //   title: 'Sent Email',
+      //   description: 'Follow up with the client.',
+      // ),
     ];
 
     return Scaffold(

@@ -13,11 +13,13 @@ class ScheduledAppointmentsScreen extends StatelessWidget {
         icon: Icons.event,
         title: 'Service Appointment',
         description: 'Scheduled for regular service checkup',
+        id: '',
       ),
       Appointment(
         icon: Icons.medical_services,
         title: 'Medical Checkup',
         description: 'Scheduled for medical examination',
+        id: '',
       ),
     ];
 

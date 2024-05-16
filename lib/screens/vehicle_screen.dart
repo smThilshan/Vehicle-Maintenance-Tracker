@@ -79,7 +79,7 @@ class VehicleScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final vehicle = vehicles[index];
                 return VehicleCard(
-                  topRightIcon: Icons.warning_amber_rounded,
+                  ontap: () {},
                   vehicleNo: vehicle.vehicleNo,
                   imageFile: vehicle.imageFile,
                 );

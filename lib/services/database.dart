@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:vehicle_maintenance_tracker/models/reminder_model.dart';
 import 'package:vehicle_maintenance_tracker/models/vehicle_model.dart';
+
+import '../models/appointments_model.dart';
 
 class DatabaseMethods {
   Future<void> addExpenseDetails(
@@ -194,6 +197,44 @@ class DatabaseMethods {
     } catch (e) {
       print("Error getting image URL: $e");
       return '';
+    }
+  }
+
+  Future<List<Appointment>> getAllAppointments() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection("Appointments").get();
+
+      List<Appointment> appointments = querySnapshot.docs.map((doc) {
+        return Appointment(
+          id: doc.id,
+          title: doc['title'],
+          dateTime: doc['dateTime'].toDate(), // Convert to DateTime
+          description: doc['description'],
+          icon: Icons.air_sharp, // Add the appropriate icon
+          // Add other fields as needed
+        );
+      }).toList();
+
+      return appointments;
+    } catch (e) {
+      print("Error getting appointments: $e");
+      return [];
+    }
+  }
+
+  Future<void> deleteAppointment(String appointmentId) async {
+    try {
+      // Get a reference to the document with the specified ID
+      DocumentReference appointmentRef = FirebaseFirestore.instance
+          .collection("Appointments")
+          .doc(appointmentId);
+
+      // Delete the document
+      await appointmentRef.delete();
+    } catch (e) {
+      print("Error deleting appointment: $e");
+      throw e; // Re-throw the error to handle it at the caller's end
     }
   }
 }

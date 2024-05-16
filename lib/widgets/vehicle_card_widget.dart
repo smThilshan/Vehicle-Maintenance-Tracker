@@ -6,13 +6,13 @@ import 'package:vehicle_maintenance_tracker/screens/vehicle_details_screen.dart'
 class VehicleCard extends StatelessWidget {
   // final String? imageUrl;
   final File? imageFile;
-  final IconData topRightIcon;
+  final VoidCallback ontap;
   final String vehicleNo;
 
   const VehicleCard({
     Key? key,
     required this.vehicleNo,
-    required this.topRightIcon,
+    required this.ontap,
     this.imageFile,
   }) : super(key: key);
 
@@ -56,7 +56,8 @@ class VehicleCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Icon(topRightIcon, size: 32),
+                  // Icon(topRightIcon, size: 32),
+                  IconButton(onPressed: ontap, icon: Icon(Icons.add)),
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {

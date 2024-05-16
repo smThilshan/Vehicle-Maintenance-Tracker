@@ -19,12 +19,7 @@ class Vehicle extends Equatable {
   final String? imgUrl;
   final File? imageFile;
 
-  // final String name;
-  // final String vehicleNo;
-
   Vehicle({
-    // required this.name,
-    // required this.imgUrl,
     required this.id,
     required this.vehicleNo,
     required this.vehicleModel,

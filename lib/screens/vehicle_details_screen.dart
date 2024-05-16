@@ -123,6 +123,10 @@ class VehicleDetailsScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
+
+            SizedBox(
+              height: 10,
+            ),
             TileCustomCardWidget(
               textline: "Total Expenses: LKR 26500.00",
             ),
@@ -130,7 +134,8 @@ class VehicleDetailsScreen extends StatelessWidget {
               height: 10,
             ),
             TileCustomCardWidget(
-              textline: "Total Mileages: 265,300 Km",
+              textline:
+                  "Total Mileages: ${selectedVehicle?.currentMeterReading}",
             ),
             SizedBox(
               height: 10,

@@ -168,19 +168,19 @@ class _AddVehicleScreenState extends State<AddVehicleScreen> {
                     _lastOilChangedDate = value!;
                   },
                 ),
-                TextFormField(
-                  decoration:
-                      const InputDecoration(labelText: 'Last service date '),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter vehicle model';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _fuelType = value!;
-                  },
-                ),
+                // TextFormField(
+                //   decoration:
+                //       const InputDecoration(labelText: 'Last service date '),
+                //   validator: (value) {
+                //     if (value == null || value.isEmpty) {
+                //       return 'Please enter vehicle model';
+                //     }
+                //     return null;
+                //   },
+                //   onSaved: (value) {
+                //     _fuelType = value!;
+                //   },
+                // ),
                 TextFormField(
                   decoration:
                       const InputDecoration(labelText: 'Insurance period'),

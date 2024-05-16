@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_maintenance_tracker/models/appointments_model.dart';
+import 'package:vehicle_maintenance_tracker/services/database.dart';
 
-class NotificationScreen extends StatelessWidget {
+class NotificationScreen extends StatefulWidget {
   static const routeName = 'notification_screen';
+
+  @override
+  State<NotificationScreen> createState() => _NotificationScreenState();
+}
+
+class _NotificationScreenState extends State<NotificationScreen> {
+  late Future<List<Appointment>> _appointmentsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _appointmentsFuture = DatabaseMethods().getAllAppointments();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +38,27 @@ class NotificationScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: ListView.builder(
-                itemCount: 2, // Number of notifications
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: _buildNotificationCard(context),
-                  );
+              child: FutureBuilder<List<Appointment>>(
+                future: _appointmentsFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Center(child: Text('No upcoming appointments'));
+                  } else {
+                    return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        Appointment appointment = snapshot.data![index];
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: _buildNotificationCard(context, appointment),
+                        );
+                      },
+                    );
+                  }
                 },
               ),
             ),
@@ -39,7 +68,7 @@ class NotificationScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildNotificationCard(BuildContext context) {
+  Widget _buildNotificationCard(BuildContext context, Appointment appointment) {
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(
@@ -54,7 +83,7 @@ class NotificationScreen extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.blue, // Use your desired color
+                color: Colors.blue,
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -68,7 +97,7 @@ class NotificationScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Notification Title',
+                    appointment.title,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -76,14 +105,14 @@ class NotificationScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Notification message goes here. This is a sample notification message.',
+                    appointment.description,
                     style: TextStyle(
                       fontSize: 14,
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(
-                    '2 hours ago',
+                    _formatDateTime(appointment.dateTime),
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 12,
@@ -96,5 +125,19 @@ class NotificationScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _formatDateTime(DateTime? dateTime) {
+    if (dateTime == null) {
+      return 'No date available';
+    }
+    Duration difference = DateTime.now().difference(dateTime);
+    if (difference.inMinutes < 60) {
+      return '${difference.inMinutes} minutes ago';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours} hours ago';
+    } else {
+      return '${difference.inDays} days ago';
+    }
   }
 }
